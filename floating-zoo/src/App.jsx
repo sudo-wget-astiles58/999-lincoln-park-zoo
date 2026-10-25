@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Scene, OVERVIEW } from './components/Scene'
 import { buildWorld, feedStore } from './lib/world'
 import { SPECIES } from './lib/animals'
+import { BuildingEditor } from './components/BuildingEditor'
 
 const world = buildWorld()
 const TOUR = world.islands.filter((i) => i.animals.length).map((i) => i.id)
@@ -16,6 +17,8 @@ export default function App() {
   const [tour, setTour] = useState(false)
   const [listOpen, setListOpen] = useState(window.innerWidth > 720)
   const [treats, setTreats] = useState(0)
+  const [editing, setEditing] = useState(false)
+  const [rev, setRev] = useState(0) // bumps when the editor rebuilds an island
 
   const select = useCallback((id) => {
     setSelectedId(id)
@@ -67,6 +70,7 @@ export default function App() {
           focus={focus}
           onSelect={select}
           onHover={setHoveredId}
+          rev={rev}
         />
       </Canvas>
 
@@ -93,7 +97,17 @@ export default function App() {
         )}
       </nav>
 
-      {island && (
+      {editing && island && (
+        <BuildingEditor key={island.id} world={world} islandId={island.id} onRebuilt={() => setRev((r) => r + 1)} />
+      )}
+      {editing && !island && (
+        <aside className="editor panel">
+          <div className="area">Building editor</div>
+          <p className="hint">Click an island to edit its buildings.</p>
+        </aside>
+      )}
+
+      {!editing && island && (
         <aside className="card panel" key={island.id}>
           <button className="close" onClick={() => select(null)} aria-label="Back to overview">✕</button>
           <div className="area">{island.area}</div>
@@ -119,6 +133,7 @@ export default function App() {
         <button onClick={() => { setTour(false); select(null) }}>🗺️ Overview</button>
         <button className={tour ? 'on' : ''} onClick={() => setTour((t) => !t)}>🎥 {tour ? 'Stop tour' : 'Tour'}</button>
         <button className={labels ? 'on' : ''} onClick={() => setLabels((l) => !l)}>🏷️ Labels</button>
+        <button className={editing ? 'on' : ''} onClick={() => { setTour(false); setEditing((e) => !e) }}>🛠️ Edit</button>
         <button onClick={() => setNight((n) => !n)}>{night ? '☀️ Day' : '🌙 Night'}</button>
         {treats > 0 && <span className="stat">🍎 {treats} {treats === 1 ? 'treat' : 'treats'} tossed</span>}
       </div>

@@ -4,7 +4,7 @@
 export const EXHIBITS = [
   {
     id: 'conservatory', name: 'Lincoln Park Conservatory', area: 'Next door, north-west',
-    pos: [-62, 3, -90], R: 13, terrain: 'grass',
+    pos: [-62, 3, -90], R: 43, terrain: 'grass',
     buildings: [{ type: 'glasshouse' }], trees: { palm: 3, bush: 4 },
     animals: [],
     blurb: 'The zoo’s Victorian glasshouse neighbor, full of palms, ferns and orchids. A good warm-up on a cold Chicago day.',
@@ -103,8 +103,8 @@ export const EXHIBITS = [
   },
   {
     id: 'lagoon', name: 'Swan Pond & Waterfowl Lagoon', area: 'Central',
-    pos: [-4, -1, 8], R: 17, terrain: 'grass',
-    pools: [{ x: -5, z: -5, r: 5 }, { x: 4, z: 5, r: 7 }], trees: { oak: 3, bush: 2 },
+    pos: [-4, -1, 24], R: 37, terrain: 'grass',
+    pools: [{ x: -15, z: -5, r: 15 }, { x: 14, z: 5, r: 17 }], trees: { oak: 3, bush: 2 },
     animals: [['swan', 3], ['flamingo', 6]],
     blurb: 'Swans glide on the pond while a flock of pink Chilean flamingos wades in the lagoon.',
   },
@@ -132,7 +132,7 @@ export const EXHIBITS = [
   },
   {
     id: 'brauer', name: 'Café Brauer', area: 'South',
-    pos: [-8, -3, 40], R: 13, terrain: 'grass',
+    pos: [1, -3, 50], R: 13, terrain: 'grass',
     buildings: [{ type: 'house', w: 10, d: 6, h: 5, wall: '#c87850', roof: '#3c7d5a', roof2: '#468a65', x: 0, z: -2 }],
     trees: { oak: 3 },
     animals: [],
@@ -140,17 +140,17 @@ export const EXHIBITS = [
   },
   {
     id: 'farm', name: 'Farm-in-the-Zoo', area: 'South',
-    pos: [-20, 1, 70], R: 18, terrain: 'grass',
+    pos: [-20, 1, 70], R: 28, terrain: 'grass',
     buildings: [{ type: 'barn', x: -2, z: 4 }], trees: { oak: 3 },
     animals: [['cow', 2], ['goat', 3], ['chicken', 6]],
     blurb: 'A Midwest farm in the middle of the city, with cows, goats and chickens around a big red barn.',
   },
   {
     id: 'southpond', name: 'South Pond & Nature Boardwalk', area: 'South',
-    pos: [20, -2, 76], R: 20, terrain: 'grass',
-    pools: [{ x: 2, z: 3, r: 12, islet: { x: 6, z: 7, r: 3 } }],
-    buildings: [{ type: 'pavilion', x: -10, z: -6 }], trees: { oak: 5, bush: 3 },
-    animals: [['heron', 2], ['turtle', 3]],
+    pos: [20, -1, 96], R: 60, terrain: 'grass',
+    pools: [{ x: 2, z: 3, r: 42, islet: { x: 16, z: 7, r: 13 } }],
+    buildings: [{ type: 'pavilion', x: 80, z: -96 }], trees: { oak: 5, bush: 3 },
+    animals: [['heron', 2], ['turtle', 3], ['beaver', 2]],
     blurb: 'A restored prairie pond with a boardwalk loop, herons stalking the shallows, and Foreman Island in the middle.',
   },
 ]
@@ -180,6 +180,8 @@ export const BRIDGES = [
   ['apes', 'southloop'],
   ['lagoon', 'brauer'],
   ['brauer', 'farm'],
+  ['brauer', 'southloop'],
   ['farm', 'southpond'],
   ['southloop', 'southpond'],
+  ['conservatory', 'southpond'],
 ]

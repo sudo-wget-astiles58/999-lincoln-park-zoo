@@ -42,7 +42,19 @@ export function buildWorld() {
       .filter((br) => br.a === isl.id || br.b === isl.id)
       .map((br) => ({ bridge: br, other: br.a === isl.id ? br.b : br.a, end: isl.endpoints.find((p) => p.id === br.id) }))
   }
-  return { islands, bridges, byId }
+  return { islands, bridges, byId, angles }
+}
+
+// Regenerate one island in place (used by the live building editor).
+// Bridges, visitors and animals keep pointing at the same island object.
+export function rebuildIsland(world, id, buildings) {
+  const isl = world.byId[id]
+  const ex = EXHIBITS.find((e) => e.id === id)
+  const fresh = generateIsland({ ...ex, buildings }, world.angles[id] || [])
+  isl.landGeo.dispose()
+  isl.waterGeo.dispose()
+  isl.spinners.forEach((s) => s.geo.dispose())
+  Object.assign(isl, fresh)
 }
 
 // Tiny shared store for "feed" events so the 3D scene can react to UI buttons.

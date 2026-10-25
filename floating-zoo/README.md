@@ -16,3 +16,9 @@ Then open the URL Vite prints (usually http://localhost:5173).
 - `src/lib/islandGen.js` — terrain, paths, buildings and trees for each island.
 - `src/components/` — the 3D scene (islands, bridges, visitors, clouds, camera) and animals.
 - `src/App.jsx` + `src/styles.css` — the UI overlay.
+
+## Live building editor
+
+Click **🛠️ Edit** in the bottom bar, then click an island. Every building on it gets sliders (position, size, colors), and the island rebuilds as you drag. You can also add or remove buildings. Nothing is saved: press **Copy buildings code** and paste the result over that island's `buildings: [...]` line in `src/data/exhibits.js`.
+
+Each building type's settings, defaults and slider ranges live in `BUILDINGS` in `src/lib/islandGen.js` (`defaults` and `params`). Add a key to both to get a new slider.
