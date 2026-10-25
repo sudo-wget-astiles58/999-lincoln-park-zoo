@@ -90,7 +90,7 @@ function CameraRig({ world, focus }) {
   return null
 }
 
-export function Scene({ world, night, labels, selectedId, hoveredId, focus, onSelect, onHover }) {
+export function Scene({ world, night, labels, selectedId, hoveredId, focus, onSelect, onHover, rev }) {
   const theme = night ? THEMES.night : THEMES.day
   return (
     <>
@@ -120,6 +120,7 @@ export function Scene({ world, night, labels, selectedId, hoveredId, focus, onSe
           selected={selectedId === isl.id}
           hovered={hoveredId === isl.id}
           showLabel={labels}
+          rev={rev}
           onSelect={onSelect}
           onHover={onHover}
         />

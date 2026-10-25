@@ -85,3 +85,17 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .toolbar button { padding: 7px 8px; font-size: 13px; }
   .help { display: none; }
 }
+
+/* Building editor (leva sliders) */
+.editor { top: 16px; right: 16px; width: 340px; max-height: calc(100vh - 110px); overflow: auto; padding: 16px 16px 14px; }
+.editor .area { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
+.editor h2 { margin: 2px 0 6px; font-size: 18px; line-height: 1.2; }
+.editor .hint { font-size: 12px; color: var(--muted); margin: 0 0 10px; line-height: 1.45; }
+.editor code { background: var(--chip); border-radius: 4px; padding: 0 4px; }
+.leva-wrap { border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+.editor-row { display: flex; gap: 6px; margin-bottom: 10px; }
+.editor-row select { flex: 1; font: inherit; border: 1px solid var(--border); border-radius: 8px; padding: 6px; background: #fff; }
+.editor-row button { border: 1px solid var(--border); background: #fff; border-radius: 8px; padding: 6px 10px; font-weight: 700; }
+@media (max-width: 720px) {
+  .editor { top: auto; bottom: 76px; left: 16px; right: 16px; width: auto; max-height: 50vh; }
+}

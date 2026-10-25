@@ -113,50 +113,73 @@ function dome(g, cx, cy, cz, r, colorFn) {
       }
 }
 
-const BUILDINGS = {
-  house: { size: (b) => [b.w ?? 8, b.d ?? 6], build: (g, x0, z0, w, d, b, face) => house(g, x0, z0, w, d, b, face) },
+// Every building type lists its settings with defaults, plus slider ranges for the live editor.
+// Anything set on a building in exhibits.js overrides these defaults.
+export const BUILDINGS = {
+  house: {
+    defaults: { w: 8, d: 6, h: 4, roofStyle: 'hip', wall: '#e8dcc4', roof: '#b5523b', roof2: '#b5523b', trim: '#f6efe0', win: '#41617f', door: '#6b4423' },
+    params: { w: [3, 40], d: [3, 40], h: [2, 16] },
+    size: (b) => [b.w, b.d],
+    build: (g, x0, z0, w, d, b, face) => house(g, x0, z0, w, d, b, face),
+  },
   barn: {
-    size: (b) => [(b.w ?? 8) + 4, b.d ?? 7],
+    defaults: { w: 8, d: 7, h: 5, siloH: 3 },
+    params: { w: [4, 30], d: [4, 30], h: [3, 12], siloH: [0, 12] },
+    size: (b) => [b.w + 4, b.d],
     build(g, x0, z0, W, d, b, face) {
-      const w = W - 4, h = 5
+      const w = W - 4, h = b.h
       house(g, x0, z0, w, d, { h, wall: '#c8453a', roof: '#7a2a24', roof2: '#8a3029', trim: '#f4efe6', win: '#f4efe6', door: '#f4efe6', roofStyle: 'gable' }, face)
       for (const x of [x0, x0 + w - 1]) for (const z of [z0, z0 + d - 1]) g.box(x, 1, z, x, h, z, '#f4efe6')
       const sx = x0 + w + 1, sz = z0 + Math.floor(d / 2)
-      for (let x = -1; x <= 1; x++) for (let z = -1; z <= 1; z++) g.box(sx + x, 1, sz + z, sx + x, h + 3, sz + z, (xx, y) => (y % 3 ? '#c9ccd1' : '#aab0b8'))
-      g.set(sx, h + 4, sz, '#8a9099')
+      for (let x = -1; x <= 1; x++) for (let z = -1; z <= 1; z++) g.box(sx + x, 1, sz + z, sx + x, h + b.siloH, sz + z, (xx, y) => (y % 3 ? '#c9ccd1' : '#aab0b8'))
+      g.set(sx, h + b.siloH + 1, sz, '#8a9099')
     },
   },
   glasshouse: {
-    size: () => [13, 9],
-    build(g, x0, z0, w, d) {
+    defaults: { w: 13, d: 9, wingH: 13, wingD: 9, domeR: 9 },
+    params: { w: [5, 80], d: [5, 50], wingH: [2, 30], wingD: [1, 49], domeR: [2, 25] },
+    size: (b) => [b.w, b.d],
+    build(g, x0, z0, w, d, b) {
+      const { wingH, wingD, domeR } = b // wing height, wing depth (odd looks best), dome radius
       const glass = (x, y, z) => ((x + y + z) % 3 === 0 ? '#ffffff' : (x + z) % 2 ? '#cfe9ef' : '#bfe0e8')
-      const cz = z0 + 4, cx = x0 + 6
-      g.box(x0, 1, cz - 2, x0 + w - 1, 3, cz + 2, glass)
-      g.box(x0, 4, cz - 1, x0 + w - 1, 4, cz + 1, glass)
-      g.box(x0, 5, cz, x0 + w - 1, 5, cz, '#ffffff')
-      dome(g, cx, 2, cz, 4, glass)
-      g.box(cx, 7, cz, cx, 8, cz, '#ffffff')
+      const x1 = x0 + w - 1
+      const cx = x0 + Math.floor(w / 2), cz = z0 + Math.floor(d / 2)
+      const half = Math.floor(wingD / 2)
+      const domeBase = wingH - 1
+      g.box(x0, 1, cz - half, x1, wingH, cz + half, glass)         // wings
+      g.box(x0, wingH + 1, cz - 1, x1, wingH + 1, cz + 1, glass)    // roof step
+      g.box(x0, wingH + 2, cz, x1, wingH + 2, cz, '#ffffff')        // white ridge
+      dome(g, cx, domeBase, cz, domeR, glass)                       // dome sits on the wings
+      g.box(cx, domeBase + domeR + 1, cz, cx, domeBase + domeR + 2, cz, '#ffffff') // spire on top
     },
   },
   aviary: {
-    size: () => [11, 11],
-    build(g, x0, z0) {
-      dome(g, x0 + 5, 1, z0 + 5, 5, (x, y, z) => ((x + y + z) & 1 ? null : '#355e45'))
-      g.set(x0 + 5, 7, z0 + 5, '#2b4a37')
+    defaults: { radius: 5, frame: '#355e45' },
+    params: { radius: [2, 20] },
+    size: (b) => [b.radius * 2 + 1, b.radius * 2 + 1],
+    build(g, x0, z0, w, d, b) {
+      const c = b.radius
+      dome(g, x0 + c, 1, z0 + c, c, (x, y, z) => ((x + y + z) & 1 ? null : b.frame))
+      g.set(x0 + c, c + 2, z0 + c, b.frame)
     },
   },
   pavilion: {
-    size: () => [9, 7],
-    build(g, x0, z0, w, d) {
-      for (let z = z0; z < z0 + d; z += 2)
-        for (let a = 0; a <= 12; a++) {
-          const t = (a / 12) * Math.PI
-          g.set(x0 + 4 + Math.round(Math.cos(t) * 4), 1 + Math.round(Math.sin(t) * 4), z, '#c49a6c')
+    defaults: { radius: 4, length: 7, archGap: 2, wood: '#c49a6c', floor: '#b88c5e' },
+    params: { radius: [2, 20], length: [1, 60], archGap: [1, 8] },
+    size: (b) => [b.radius * 2 + 1, b.length],
+    build(g, x0, z0, w, d, b) {
+      const r = b.radius, steps = Math.max(12, r * 4) // more steps keep big arches solid
+      for (let z = z0; z < z0 + d; z += b.archGap)
+        for (let a = 0; a <= steps; a++) {
+          const t = (a / steps) * Math.PI
+          g.set(x0 + r + Math.round(Math.cos(t) * r), 1 + Math.round(Math.sin(t) * r), z, b.wood)
         }
-      g.box(x0 + 1, 1, z0, x0 + 7, 1, z0 + d - 1, '#b88c5e')
+      g.box(x0 + 1, 1, z0, x0 + w - 2, 1, z0 + d - 1, b.floor)
     },
   },
   carousel: {
+    defaults: {},
+    params: {},
     size: () => [9, 9],
     spin: true,
     build(g, x0, z0) {
@@ -173,14 +196,14 @@ const BUILDINGS = {
         g.set(x + (Math.abs(z) > Math.abs(x) ? 1 : 0), 3, z + (Math.abs(z) > Math.abs(x) ? 0 : 1), horse[a])
       }
       g.box(-1, 2, -1, 1, 5, 1, '#f3ead8')
-      ;[4.6, 3.6, 2.6, 1.6, 0.6].forEach((r, l) => {
-        for (let x = -5; x <= 5; x++)
-          for (let z = -5; z <= 5; z++)
-            if (x * x + z * z <= r * r) {
-              const seg = Math.floor(((Math.atan2(z, x) + Math.PI) / (Math.PI * 2)) * 12) % 2
-              g.set(x, 6 + l, z, seg ? '#e04b4b' : '#fbf6ec')
-            }
-      })
+        ;[4.6, 3.6, 2.6, 1.6, 0.6].forEach((r, l) => {
+          for (let x = -5; x <= 5; x++)
+            for (let z = -5; z <= 5; z++)
+              if (x * x + z * z <= r * r) {
+                const seg = Math.floor(((Math.atan2(z, x) + Math.PI) / (Math.PI * 2)) * 12) % 2
+                g.set(x, 6 + l, z, seg ? '#e04b4b' : '#fbf6ec')
+              }
+        })
       g.set(0, 11, 0, '#e0b84a')
     },
   },
@@ -268,8 +291,9 @@ export function generateIsland(ex, bridgeAngles) {
       }
     return true
   }
-  for (const b of ex.buildings || []) {
-    const def = BUILDINGS[b.type]
+  for (const raw of ex.buildings || []) {
+    const def = BUILDINGS[raw.type]
+    const b = { ...def.defaults, ...raw }
     const [w, d] = def.size(b)
     const px = (b.x ?? 0) - Math.floor(w / 2), pz = (b.z ?? 0) - Math.floor(d / 2)
     const candidates = []
