@@ -74,6 +74,27 @@ function rock(g, i, k, rand, snowy) {
   if (s === 2) g.set(i + (rand() < 0.5 ? 0 : 1), 3, k, col())
 }
 
+function bigRock(g, i, k, rand, snowy) {
+  let rx = 5 + Math.floor(rand() * 3)       // long half-length: 5–7 voxels
+  let rz = 2 + Math.floor(rand() * 2)       // short half-width: 2–3 voxels
+  const h = 2 + Math.floor(rand() * 2)      // 2–3 voxels tall: low and flat
+  if (rand() < 0.5) [rx, rz] = [rz, rx]     // randomly point it east-west or north-south
+
+  const col = () => (snowy && rand() < 0.3 ? '#eef3f7' : pick(['#9a978f', '#8a877f', '#a8a59c'], rand()))
+
+  for (let y = 1; y <= h; y++) {
+    const t = (y - 0.5) / h                 // 0 near the ground, close to 1 at the top
+    const layer = 1 - t * t                 // stays wide low down, pulls in near the top
+    for (let x = -rx; x <= rx; x++)
+      for (let z = -rz; z <= rz; z++) {
+        const ox = x / (rx + 0.5)           // position as a fraction of the long radius
+        const oz = z / (rz + 0.5)           // position as a fraction of the short radius
+        if (ox * ox + oz * oz <= layer && rand() > 0.1) g.set(i + x, y, k + z, col())
+      }
+  }
+}
+
+
 // Buildings. Each returns its footprint; `build` writes voxels with ground at y = 1.
 function house(g, x0, z0, w, d, b, face) {
   const { h = 4, wall = '#e8dcc4', roof = '#b5523b', roof2, trim = '#f6efe0', win = '#41617f', door = '#6b4423', roofStyle = 'hip' } = b
@@ -340,17 +361,30 @@ export function generateIsland(ex, bridgeAngles) {
       }
     }
   }
-  pool = open()
-  for (let n = 0; n < (ex.rocks || 0); n++) {
+  // pool = open()
+  // for (let n = 0; n < (ex.rocks || 0); n++) {
+  //   for (let tries = 0; tries < 40; tries++) {
+  //     const c = pool[Math.floor(rand() * pool.length)]
+  //     if (!c || !clear(c, 1)) continue
+  //     c.type = 'rock'
+  //     placed.push(c)
+  //     rock(land, c.i, c.k, rand, ex.terrain === 'snow')
+  //     break
+  //   }
+  // }
+
+  pool = [...cells.values()].filter((c) => c.type === 'grass' && interior(c.i, c.k, 3))
+  for (let n = 0; n < (ex.bigRocks || 0); n++) {
     for (let tries = 0; tries < 40; tries++) {
       const c = pool[Math.floor(rand() * pool.length)]
-      if (!c || !clear(c, 1)) continue
+      if (!c || !clear(c, 3)) continue
       c.type = 'rock'
       placed.push(c)
-      rock(land, c.i, c.k, rand, ex.terrain === 'snow')
+      bigRock(land, c.i, c.k, rand, ex.terrain === 'snow')
       break
     }
   }
+
 
   // Terrain columns: top layer, dirt, then a rocky cone hanging underneath.
   for (const c of cells.values()) {

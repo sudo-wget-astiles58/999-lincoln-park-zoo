@@ -88,7 +88,7 @@ export default function App() {
             {world.islands.map((i) => (
               <li key={i.id}>
                 <button className={i.id === selectedId ? 'active' : ''} onClick={() => select(i.id)}>
-                  <span className="emojis">{[...new Set(i.animals.map(([k]) => SPECIES[k].emoji))].slice(0, 3).join('') || '📍'}</span>
+                  <span className="emojis">{[...new Set(i.animals.map(([k]) => SPECIES[k].emoji))].slice(0, 3).join('') || i.icon || '📍'}</span>
                   {i.name}
                 </button>
               </li>

@@ -183,9 +183,14 @@ function otter() {
 }
 
 function beaver() {
+  // const TAIL = '#2b1e17'
   return quadruped({
-    w: 3, len: 8, bodyH: 2, legH: 1, headW: 3, headH: 2, headLen: 2, snoutLen: 1, snoutW: 1,
-    color: '#6b4a2e', colors: { snout: '#000000', ear: '#6b4a2e' }, tail: 5,
+    w: 3, len: 5, bodyH: 4, legH: 1, headW: 3, headH: 3, headLen: 3, snoutLen: 1, snoutW: 1,
+    color: '#6b4a2e', colors: { snout: '#eeeaca', ear: '#6b4a2e' }, nose: '#1c1511', tail: 0,
+    extra: (g, { w, by0 }) => {
+
+      g.box(0, by0, -4, w - 1, by0, - 1, '#2b1e17')
+    },
   })
 }
 
@@ -448,7 +453,7 @@ export const SPECIES = {
   swan: { name: 'Swan', emoji: '🦢', build: swan, scale: 0.11, habitat: 'water', speed: 0.45, waterY: -0.08 },
   flamingo: { name: 'Chilean flamingo', emoji: '🦩', build: flamingo, scale: 0.1, habitat: 'both', speed: 0.4, waterY: -0.5, wait: [2, 8] },
   heron: { name: 'Heron', emoji: '🪶', build: heron, scale: 0.1, habitat: 'both', speed: 0.35, waterY: -0.5, wait: [23, 1] },
-  beaver: { name: 'Beaver', emoji: '🦫', build: beaver, scale: 0.1, habitat: 'water', speed: 0.75, waterY: -0.5, wait: [3, 10] },
+  beaver: { name: 'Beaver', emoji: '🦫', build: beaver, scale: 0.1, habitat: 'both', speed: 0.75, waterY: -0.5, wait: [3, 10] },
   colobus: { name: 'Colobus monkey', emoji: '🐒', build: colobus, scale: 0.11, habitat: 'land', speed: 0.9 },
   gorilla: { name: 'Western lowland gorilla', emoji: '🦍', build: gorilla, scale: 0.14, habitat: 'land', speed: 0.45, wait: [3, 10] },
   chimp: { name: 'Chimpanzee', emoji: '🐒', build: chimp, scale: 0.12, habitat: 'land', speed: 0.8 },

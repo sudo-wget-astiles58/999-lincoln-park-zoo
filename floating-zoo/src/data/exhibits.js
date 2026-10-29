@@ -7,7 +7,8 @@ export const EXHIBITS = [
     pos: [-62, 3, -90], R: 43, terrain: 'grass',
     buildings: [{ type: 'glasshouse' }], trees: { palm: 3, bush: 4 },
     animals: [],
-    blurb: 'The zoo’s Victorian glasshouse neighbor, full of palms, ferns and orchids. A good warm-up on a cold Chicago day.',
+    icon: ["🌿", "🪴", "🌺", "🌴"],
+    blurb: "The zoo's Victorian glasshouse neighbor, full of palms, ferns and orchids. A good warm-up on a cold Chicago day.",
   },
   {
     id: 'macaques', name: 'Regenstein Macaque Forest', area: 'North-west',
@@ -43,7 +44,7 @@ export const EXHIBITS = [
     buildings: [{ type: 'aviary', x: -3, z: -3 }, { type: 'house', w: 7, d: 5, h: 4, wall: '#d8c8a8', roof: '#7a5a3a', x: 5, z: 5 }],
     trees: { oak: 4 },
     animals: [['songbird', 5], ['eagle', 2]],
-    blurb: 'Tropical birds flit around the bird house while birds of prey ride the thermals overhead.',
+    blurb: 'Tropical birds fly around the bird house while birds of prey ride the thermals overhead.',
   },
   {
     id: 'train', name: 'Lionel Train Adventure', area: 'West gate',
@@ -51,6 +52,7 @@ export const EXHIBITS = [
     buildings: [{ type: 'house', w: 6, d: 5, h: 3, wall: '#f4ecd8', roof: '#c8463c', x: -10, z: 6 }],
     trees: { bush: 3, oak: 1 },
     animals: [],
+    icon: ["🚂"],
     blurb: 'A miniature train loops around the island. Grab a treat at Eadie Levy’s Landmark Café nearby.',
   },
   {
@@ -62,7 +64,8 @@ export const EXHIBITS = [
     ],
     trees: { oak: 4, bush: 2 },
     animals: [],
-    blurb: 'The zoo’s front porch: visitor info, the gift shop, and the Main Mall that ties the whole place together. Admission has been free since 1868.',
+    icon: ["🍔", "🥗", "🚻"],
+    blurb: "The zoo's front porch: visitor info, the gift shop, and the Main Mall that ties the whole place together. Admission has been free since 1868.",
   },
   {
     id: 'seals', name: 'Kovler Seal Pool', area: 'Central',
@@ -73,9 +76,9 @@ export const EXHIBITS = [
   },
   {
     id: 'lions', name: 'Pepper Family Wildlife Center', area: 'Central',
-    pos: [0, 2, -28], R: 16, terrain: 'savanna',
+    pos: [0, 2, -28], R: 30, terrain: 'savanna',
     buildings: [{ type: 'house', w: 10, d: 6, h: 5, wall: '#b5653e', roof: '#5c7a6e', roof2: '#668578', x: 0, z: -5 }],
-    trees: { acacia: 2, bush: 3 }, rocks: 4,
+    trees: { acacia: 2, bush: 3 }, rocks: 2, bigRocks: 1,
     animals: [['lion', 1], ['lioness', 2]],
     blurb: 'The historic Lion House, now home to a pride of African lions with plenty of sunny rocks to lounge on.',
   },
@@ -84,6 +87,7 @@ export const EXHIBITS = [
     pos: [50, -1, -14], R: 13, terrain: 'grass',
     buildings: [{ type: 'carousel' }], trees: { oak: 2, bush: 2 },
     animals: [],
+    icon: ["🎠"],
     blurb: 'A carousel of hand-carved animals, each one a species that needs protecting.',
   },
   {
@@ -136,6 +140,7 @@ export const EXHIBITS = [
     buildings: [{ type: 'house', w: 10, d: 6, h: 5, wall: '#c87850', roof: '#3c7d5a', roof2: '#468a65', x: 0, z: -2 }],
     trees: { oak: 3 },
     animals: [],
+    icon: ["☕️", "🥗", "🚻"],
     blurb: 'A 1908 Prairie School landmark on the South Pond, with a patio for lunch in the sun.',
   },
   {
@@ -150,7 +155,7 @@ export const EXHIBITS = [
     pos: [20, -1, 96], R: 60, terrain: 'grass',
     pools: [{ x: 2, z: 3, r: 42, islet: { x: 16, z: 7, r: 13 } }],
     buildings: [{ type: 'pavilion', x: 80, z: -96 }], trees: { oak: 5, bush: 3 },
-    animals: [['heron', 2], ['turtle', 3], ['beaver', 2]],
+    animals: [['heron', 2], ['turtle', 5], ['beaver', 2]],
     blurb: 'A restored prairie pond with a boardwalk loop, herons stalking the shallows, and Foreman Island in the middle.',
   },
 ]
@@ -164,7 +169,7 @@ export const BRIDGES = [
   ['penguins', 'birds'],
   ['birds', 'mall'],
   ['mall', 'lions'],
-  ['africa', 'lions'],
+  // ['africa', 'lions'],
   ['birds', 'carousel'],
   ['macaques', 'train'],
   ['train', 'seals'],
@@ -172,7 +177,7 @@ export const BRIDGES = [
   ['train', 'childrens'],
   ['childrens', 'reptiles'],
   ['reptiles', 'lagoon'],
-  ['lions', 'lagoon'],
+  // ['lions', 'lagoon'],
   ['lagoon', 'primates'],
   ['carousel', 'primates'],
   ['primates', 'apes'],
@@ -183,5 +188,5 @@ export const BRIDGES = [
   ['brauer', 'southloop'],
   ['farm', 'southpond'],
   ['southloop', 'southpond'],
-  ['conservatory', 'southpond'],
+  // ['conservatory', 'southpond'],
 ]
