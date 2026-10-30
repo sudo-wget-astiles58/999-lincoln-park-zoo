@@ -175,6 +175,20 @@ function seal() {
   return g
 }
 
+function harborSeal() {
+  const g = new VoxelGrid(), c = '#b0b1b2', lt = '#9aa0a6'
+  const body = (x, y, z) => (hash3(x, y, z, 5) < 0.18 ? '#5e636a' : c)
+  g.box(0, 0, 0, 3, 2, 7, body)
+  g.box(1, 0, -2, 2, 1, -1, body)
+  g.box(0, 0, -3, 3, 0, -3, '#5e636a')
+  g.box(0, 1, 8, 3, 4, 10, body)
+  g.box(1, 1, 11, 2, 2, 11, lt)
+  g.set(1, 2, 12, DARK); g.set(2, 2, 12, DARK)
+  g.set(0, 3, 10, DARK); g.set(3, 3, 10, DARK)
+  g.box(-1, 0, 5, -1, 0, 6, '#5e636a'); g.box(4, 0, 5, 4, 0, 6, '#5e636a')
+  return g
+}
+
 function otter() {
   return quadruped({
     w: 3, len: 8, bodyH: 2, legH: 1, headW: 3, headH: 2, headLen: 2, snoutLen: 1, snoutW: 1,
@@ -183,7 +197,7 @@ function otter() {
 }
 
 function beaver() {
-  // const TAIL = '#2b1e17'
+
   return quadruped({
     w: 3, len: 5, bodyH: 4, legH: 1, headW: 3, headH: 3, headLen: 3, snoutLen: 1, snoutW: 1,
     color: '#6b4a2e', colors: { snout: '#eeeaca', ear: '#6b4a2e' }, nose: '#1c1511', tail: 0,
@@ -286,6 +300,40 @@ function swan() {
   g.set(1, 8, 8, DARK); g.set(2, 8, 8, DARK)
   return g
 }
+
+function mallardM() {
+  const g = new VoxelGrid()
+  g.box(0, 0, 0, 3, 2, 5, '#785c44') //whole body
+  g.box(1, 3, 0, 2, 3, 0, '#38291c') //tail (height, width, depth, ) 
+  g.box(1, 3, 5, 2, 3, 5, '#e8e1db') // neck
+  g.box(1, 4, 5, 2, 6, 7, '#06481e') //head 
+  g.box(1, 4, 7, 2, 4, 8, '#facf31') //beak
+  g.set(1, 5, 6, DARK); g.set(2, 5, 6, DARK) //eyes
+  return g
+}
+
+function mallardF() {
+  const g = new VoxelGrid()
+  g.box(0, 0, 0, 3, 2, 5, '#785c44') //whole body
+  g.box(1, 3, 0, 2, 3, 0, '#38291c') //tail (height, width, depth, ) 
+  g.box(1, 3, 5, 2, 3, 5, '#a8896f') // neck
+  g.box(1, 4, 5, 2, 6, 7, '#a8896f') //head 
+  g.box(1, 4, 7, 2, 4, 8, '#facf31') //beak
+  g.set(1, 5, 6, DARK); g.set(2, 5, 6, DARK) //eyes
+  return g
+}
+//vvv OG mallard I copied from Mallard M
+// function mallardF() {
+//   const g = new VoxelGrid()
+//   g.box(0, 0, 0, 3, 2, 5, '#785c44')
+//   g.box(1, 3, 0, 2, 3, 1, '#785c44')
+//   g.box(1, 3, 5, 2, 7, 5, '#785c44')
+//   g.box(1, 7, 6, 2, 4, 4, '#785c44')
+//   g.box(1, 4, 5, 2, 5, 2, '#f08a24')
+//   g.set(1, 6, 6, DARK); g.set(2, 6, 6, DARK) //eyes
+//   return g
+// }
+
 function wader({ body, wing, legs, neck = body, beak, tip = DARK }) {
   const g = new VoxelGrid()
   g.box(1, 0, 2, 1, 6, 2, legs); g.box(2, 0, 2, 2, 6, 2, legs)
@@ -443,6 +491,7 @@ export const SPECIES = {
   songbird: { name: 'Tropical bird', emoji: '🐦', build: songbird, scale: 0.1, habitat: 'air', speed: 0.7, height: [3.5, 6] },
   macaque: { name: 'Japanese macaque', emoji: '🐒', build: macaque, scale: 0.12, habitat: 'both', speed: 0.8, waterY: -0.35 },
   seal: { name: 'Grey seal', emoji: '🦭', build: seal, scale: 0.12, habitat: 'both', speed: 1.1, waterY: -0.3, preferWater: true },
+  harborSeal: { name: 'Harbor seal', emoji: '🦭', build: harborSeal, scale: 0.12, habitat: 'both', speed: .81, waterY: -0.3, preferWater: true },
   lion: { name: 'African lion', emoji: '🦁', build: () => lion(true), scale: 0.13, habitat: 'land', speed: 0.55, wait: [3, 9] },
   lioness: { name: 'Lioness', emoji: '🦁', build: () => lion(false), scale: 0.13, habitat: 'land', speed: 0.6, wait: [3, 9] },
   blackBear: { name: 'Black bear', emoji: '🐻', build: blackBear, scale: 0.11, habitat: 'land', speed: 0.6 },
@@ -451,6 +500,8 @@ export const SPECIES = {
   snake: { name: 'Snake', emoji: '🐍', build: snake, scale: 0.09, habitat: 'land', speed: 0.35, slither: true },
   turtle: { name: 'Turtle', emoji: '🐢', build: turtle, scale: 0.1, habitat: 'both', speed: 0.25, waterY: -0.25 },
   swan: { name: 'Swan', emoji: '🦢', build: swan, scale: 0.11, habitat: 'water', speed: 0.45, waterY: -0.08 },
+  mallardM: { name: 'Mallard - Male', emoji: '🦆', build: mallardM, scale: 0.11, habitat: 'water', speed: 1.1, waterY: -0.08 },
+  mallardF: { name: 'Mallard - Female', emoji: '🦆', build: mallardF, scale: 0.11, habitat: 'water', speed: 1.1, waterY: -0.08 },
   flamingo: { name: 'Chilean flamingo', emoji: '🦩', build: flamingo, scale: 0.1, habitat: 'both', speed: 0.4, waterY: -0.5, wait: [2, 8] },
   heron: { name: 'Heron', emoji: '🪶', build: heron, scale: 0.1, habitat: 'both', speed: 0.35, waterY: -0.5, wait: [23, 1] },
   beaver: { name: 'Beaver', emoji: '🦫', build: beaver, scale: 0.1, habitat: 'both', speed: 0.75, waterY: -0.5, wait: [3, 10] },

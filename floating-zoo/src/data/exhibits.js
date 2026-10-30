@@ -7,7 +7,7 @@ export const EXHIBITS = [
     pos: [-62, 3, -90], R: 43, terrain: 'grass',
     buildings: [{ type: 'glasshouse' }], trees: { palm: 3, bush: 4 },
     animals: [],
-    icon: ["🌿", "🪴", "🌺", "🌴"],
+    icon: ["🪴", "🌺", "🌴"],
     blurb: "The zoo's Victorian glasshouse neighbor, full of palms, ferns and orchids. A good warm-up on a cold Chicago day.",
   },
   {
@@ -71,7 +71,7 @@ export const EXHIBITS = [
     id: 'seals', name: 'Kovler Seal Pool', area: 'Central',
     pos: [-26, 0, -20], R: 14, terrain: 'rocky',
     pools: [{ x: 0, z: 0, r: 9 }], rocks: 4,
-    animals: [['seal', 4]],
+    animals: [['seal', 2], ['harborSeal', 2],],
     blurb: 'A big round pool where seals dive, glide and haul out onto the rocks to sunbathe.',
   },
   {
@@ -109,7 +109,7 @@ export const EXHIBITS = [
     id: 'lagoon', name: 'Swan Pond & Waterfowl Lagoon', area: 'Central',
     pos: [-4, -1, 24], R: 37, terrain: 'grass',
     pools: [{ x: -15, z: -5, r: 15 }, { x: 14, z: 5, r: 17 }], trees: { oak: 3, bush: 2 },
-    animals: [['swan', 3], ['flamingo', 6]],
+    animals: [['swan', 1], ['flamingo', 6], ['mallardM', 3], ['mallardF', 3]],
     blurb: 'Swans glide on the pond while a flock of pink Chilean flamingos wades in the lagoon.',
   },
   {
@@ -155,7 +155,7 @@ export const EXHIBITS = [
     pos: [20, -1, 96], R: 60, terrain: 'grass',
     pools: [{ x: 2, z: 3, r: 42, islet: { x: 16, z: 7, r: 13 } }],
     buildings: [{ type: 'pavilion', x: 80, z: -96 }], trees: { oak: 5, bush: 3 },
-    animals: [['heron', 2], ['turtle', 5], ['beaver', 2]],
+    animals: [['heron', 2], ['mallardM', 5], ['turtle', 5], ['beaver', 2], ['mallardF', 5]],
     blurb: 'A restored prairie pond with a boardwalk loop, herons stalking the shallows, and Foreman Island in the middle.',
   },
 ]

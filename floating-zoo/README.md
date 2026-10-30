@@ -26,11 +26,11 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 
 
 ### Phase 1 — 
-- AJ [ ] **1.1** Create 
+- AJ [ ] **1.1** Create statue & arch for east entrance of South Pond
 - AJ [ ] **1.2** Change island map topography: merge islands in the north & south
 - AJ [x] **1.3** Add emojis to other islands with no animals: Cafe Baur, Conservatory, Lionel Train Adventure, Main hall with food & b-rooms
 - AJ [ ] **1.4** Add tortoise to SPECIES inventory. Add to south loop island
-- AJ [ ] **1.5** Add ducks to SPECIES inventory. Add to water fowl lagoon
+- AJ [x] **1.5** Add ducks to SPECIES inventory. Add to water fowl lagoon
 - AJ [ ] **1.6** Add butterflies, fish, & insects? to SPECIES inventory. Add to south Pond
 - AJ [x] **1.7** Find full list of all animals at the zoo
 
@@ -41,7 +41,7 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [ ] **2.4** Add Grizzly bear to SPECIES inventory. Add to artic tundra
 
 ### Phase 3 — 
-- AJ [ ] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life
+- AJ [x] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life
 - AJ [ ] **3.2** Find names (if exist) of the more notable animals and add them into the app
 - AJ [ ] **3.3** Add 'grasses' to the South pond
 - AJ [ ] **3.4** Add walk path around South Pond
@@ -52,9 +52,7 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [ ] **4.3** Have turtles slow down & sun bathe, on rocks. Slow Beavers down.
 
 ### Phase 5 — 
-- AJ [ ] **5.1** Add a "Delete" button inside each task `<li>` when it's created
-- AJ [ ] **5.2** When the delete button is clicked, remove that `<li>` from the list
-- AJ [ ] **5.2** Add API's to this project. Show and change weather to current conditions in Chicago
+- AJ [ ] **5.1** Add API's to this project. Show and change weather to current conditions in Chicago
 
 ### Phase 6 — Stretch Goals (optional, tackle in any order)
 - AJ [ ] **6.1** 

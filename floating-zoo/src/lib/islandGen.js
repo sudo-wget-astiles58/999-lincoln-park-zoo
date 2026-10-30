@@ -134,6 +134,18 @@ function dome(g, cx, cy, cz, r, colorFn) {
       }
 }
 
+function longDome(g, cx, y0, cz, r, len, color) {
+  const half = Math.floor(len / 2)               // half the length of the ridge line
+  for (let y = 0; y <= r; y++)
+    for (let x = cx - half - r; x <= cx + half + r; x++)
+      for (let z = cz - r; z <= cz + r; z++) {
+        const dx = Math.max(0, Math.abs(x - cx) - half) // x-distance to the line, not the point
+        const dz = z - cz
+        if (dx * dx + y * y + dz * dz <= r * r + r)      // "+ r" smooths the voxel edges
+          g.set(x, y0 + y, z, typeof color === 'function' ? color(x, y0 + y, z) : color)
+      }
+};
+
 // Every building type lists its settings with defaults, plus slider ranges for the live editor.
 // Anything set on a building in exhibits.js overrides these defaults.
 export const BUILDINGS = {
@@ -156,22 +168,25 @@ export const BUILDINGS = {
       g.set(sx, h + b.siloH + 1, sz, '#8a9099')
     },
   },
+
+
   glasshouse: {
-    defaults: { w: 13, d: 9, wingH: 13, wingD: 9, domeR: 9 },
-    params: { w: [5, 80], d: [5, 50], wingH: [2, 30], wingD: [1, 49], domeR: [2, 25] },
+    defaults: { w: 13, d: 9, wingH: 13, wingD: 9, domeR: 9, domeLen: 6 },
+    params: { w: [5, 80], d: [5, 50], wingH: [2, 30], wingD: [1, 49], domeR: [1, 15], domeLen: [10, 40] },
     size: (b) => [b.w, b.d],
     build(g, x0, z0, w, d, b) {
-      const { wingH, wingD, domeR } = b // wing height, wing depth (odd looks best), dome radius
+      const { wingH, wingD, domeR, domeLen } = b
       const glass = (x, y, z) => ((x + y + z) % 3 === 0 ? '#ffffff' : (x + z) % 2 ? '#cfe9ef' : '#bfe0e8')
       const x1 = x0 + w - 1
       const cx = x0 + Math.floor(w / 2), cz = z0 + Math.floor(d / 2)
       const half = Math.floor(wingD / 2)
       const domeBase = wingH - 1
+      const ridgeHalf = Math.floor(domeLen / 2)
       g.box(x0, 1, cz - half, x1, wingH, cz + half, glass)         // wings
       g.box(x0, wingH + 1, cz - 1, x1, wingH + 1, cz + 1, glass)    // roof step
       g.box(x0, wingH + 2, cz, x1, wingH + 2, cz, '#ffffff')        // white ridge
-      dome(g, cx, domeBase, cz, domeR, glass)                       // dome sits on the wings
-      g.box(cx, domeBase + domeR + 1, cz, cx, domeBase + domeR + 2, cz, '#ffffff') // spire on top
+      longDome(g, cx, domeBase, cz, domeR, domeLen, glass)          // stretched dome
+      g.box(cx - ridgeHalf, domeBase + domeR + 1, cz, cx + ridgeHalf, domeBase + domeR + 1, cz, '#ffffff') // ridge line on top
     },
   },
   aviary: {
