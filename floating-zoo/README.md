@@ -26,7 +26,7 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 
 
 ### Phase 1 — 
-- AJ [ ] **1.1** Create statue & arch for east entrance of South Pond
+- AJ [ ] **1.1** Create Grant statue & arch for east entrance of South Pond
 - AJ [ ] **1.2** Change island map topography: merge islands in the north & south
 - AJ [x] **1.3** Add emojis to other islands with no animals: Cafe Baur, Conservatory, Lionel Train Adventure, Main hall with food & b-rooms
 - AJ [ ] **1.4** Add tortoise to SPECIES inventory. Add to south loop island
@@ -38,7 +38,7 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [ ] **2.1** Re-size and format the lion island to match real life
 - AJ [ ] **2.2** Add new Seal to SPECIES inventory. Add to Kovler Seal Pool
 - AJ [ ] **2.3** Add lizards and other reptiles to SPECIES inventory. Add to Reptile house
-- AJ [ ] **2.4** Add Grizzly bear to SPECIES inventory. Add to artic tundra
+- AJ [x] **2.4** Add Grizzly bear to SPECIES inventory. Add to artic tundra
 
 ### Phase 3 — 
 - AJ [x] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life
@@ -47,7 +47,7 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [ ] **3.4** Add walk path around South Pond
 
 ### Phase 4 — 
-- AJ [ ] **4.1** When a task is clicked, toggle it as "completed" (add/remove the CSS class)
+- AJ [ ] **4.1** Adjust Macague island. Add Rocks or elevation. less of a flat top and conic bottom.
 - AJ [ ] **4.2** Add stumps or rocks to South Pond.
 - AJ [ ] **4.3** Have turtles slow down & sun bathe, on rocks. Slow Beavers down.
 

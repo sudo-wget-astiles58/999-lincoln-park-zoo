@@ -26,9 +26,9 @@ export const EXHIBITS = [
   },
   {
     id: 'arctic', name: 'Walter Family Arctic Tundra', area: 'North',
-    pos: [6, 6, -88], R: 17, terrain: 'snow',
-    pools: [{ x: -5, z: -4, r: 6 }], trees: { snowpine: 6 }, rocks: 5,
-    animals: [['polarBear', 2]],
+    pos: [6, 6, -88], R: 27, terrain: 'snow',
+    pools: [{ x: -5, z: -4, r: 6 }], trees: { snowpine: 4 }, bigRocks: 3, rocks: 3,
+    animals: [['polarBear', 2], ['grizzlyBear', 1]],
     blurb: 'Home of the polar bears, with a deep pool for swimming and snowy tundra for napping.',
   },
   {
@@ -78,7 +78,7 @@ export const EXHIBITS = [
     id: 'lions', name: 'Pepper Family Wildlife Center', area: 'Central',
     pos: [0, 2, -28], R: 30, terrain: 'savanna',
     buildings: [{ type: 'house', w: 10, d: 6, h: 5, wall: '#b5653e', roof: '#5c7a6e', roof2: '#668578', x: 0, z: -5 }],
-    trees: { acacia: 2, bush: 3 }, rocks: 2, bigRocks: 1,
+    trees: { acacia: 2, bush: 3 }, rocks: 2, bigRocks: 3,
     animals: [['lion', 1], ['lioness', 2]],
     blurb: 'The historic Lion House, now home to a pride of African lions with plenty of sunny rocks to lounge on.',
   },

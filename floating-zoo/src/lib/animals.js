@@ -146,6 +146,13 @@ function polarBear() {
   })
 }
 
+function grizzlyBear() {
+  return quadruped({
+    w: 6, len: 10, bodyH: 4, legH: 3, legW: 2, headW: 4, headH: 3, headLen: 3, snoutLen: 2, snoutW: 2,
+    color: '#542906', colors: { ear: '#4c2e02', leg: '#542906' }, tail: 1,
+  })
+}
+
 function penguin() {
   const g = new VoxelGrid(), bk = '#1e1e24', wh = '#f5f5f0'
   g.box(0, 1, 0, 3, 6, 3, bk)
@@ -197,7 +204,6 @@ function otter() {
 }
 
 function beaver() {
-
   return quadruped({
     w: 3, len: 5, bodyH: 4, legH: 1, headW: 3, headH: 3, headLen: 3, snoutLen: 1, snoutW: 1,
     color: '#6b4a2e', colors: { snout: '#eeeaca', ear: '#6b4a2e' }, nose: '#1c1511', tail: 0,
@@ -483,6 +489,7 @@ export const HEART = (() => {
 // waterY: where the model's feet sit when in water (water surface is y = 0, pool floor y = -0.5)
 export const SPECIES = {
   polarBear: { name: 'Polar bear', emoji: '🐻‍❄️', build: polarBear, scale: 0.12, habitat: 'both', speed: 0.7, waterY: -0.45 },
+  grizzlyBear: { name: 'Grizzly bear', emoji: '🐻', build: grizzlyBear, scale: 0.12, habitat: 'both', speed: 0.7, waterY: -0.45 },
   giraffe: { name: 'Giraffe', emoji: '🦒', build: giraffe, scale: 0.12, habitat: 'land', speed: 0.6 },
   rhino: { name: 'Black rhino', emoji: '🦏', build: rhino, scale: 0.13, habitat: 'land', speed: 0.45 },
   meerkat: { name: 'Meerkat', emoji: '🐾', build: meerkat, scale: 0.11, habitat: 'land', speed: 1.2, wait: [2, 6] },
