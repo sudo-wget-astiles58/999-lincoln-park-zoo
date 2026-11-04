@@ -535,7 +535,7 @@ export const SPECIES = {
   redWolf: { name: 'Red wolf', emoji: '🐺', build: redWolf, scale: 0.11, habitat: 'land', speed: 0.9 },
   snake: { name: 'Snake', emoji: '🐍', build: snake, scale: 0.09, habitat: 'land', speed: 0.35, slither: true },
   fish: { name: 'Fish', emoji: '🐟', build: fish, scale: 0.09, habitat: 'water', speed: 0.44, waterY: -0.45, slither: true },
-  turtle: { name: 'Turtle', emoji: '🐢', build: turtle, scale: 0.1, habitat: 'both', speed: 0.45, waterY: -0.15 },
+  turtle: { name: 'Turtle', emoji: '🐢', build: turtle, scale: 0.1, habitat: 'both', speed: 0.45, waterY: -0.38 },
   swan: { name: 'Swan', emoji: '🦢', build: swan, scale: 0.11, habitat: 'water', speed: 0.45, waterY: -0.08 },
   mallardM: { name: 'Mallard - Male', emoji: '🦆', build: mallardM, scale: 0.11, habitat: 'water', speed: 1.1, waterY: -0.08 },
   mallardF: { name: 'Mallard - Female', emoji: '🦆', build: mallardF, scale: 0.11, habitat: 'water', speed: 1.1, waterY: -0.08 },

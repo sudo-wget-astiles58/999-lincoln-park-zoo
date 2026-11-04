@@ -24,6 +24,7 @@ Click **🛠️ Edit** in the bottom bar, then click an island. Every building o
 Each building type's settings, defaults and slider ranges live in `BUILDINGS` in `src/lib/islandGen.js` (`defaults` and `params`). Add a key to both to get a new slider.
 
 
+//todo : reformat this page. Instead of stages, restructure to changes per-island
 
 ### Phase 1 — 
 - AJ [ ] **1.1** Create Grant statue & arch for east entrance of South Pond
@@ -43,7 +44,9 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [x] **2.2** Add new Seal to SPECIES inventory. Add to Kovler Seal Pool
 - AJ [ ] **2.3** Add lizards and other reptiles to SPECIES inventory. Add to Reptile house
 - AJ [x] **2.4** Add Grizzly bear to SPECIES inventory. Add to artic tundra
-- AJ [x] **2.4** Add pop-out menu for the aniaml houses (reptile, primeape, birdhouse)
+- AJ [x] **2.5** Add pop-out menu for the aniaml houses (reptile, primeape, birdhouse)
+- AJ [x] **2.6** Add feet to ducks which paddle when underwater
+- AJ [x] **2.7** Make beavers waddle when in water maybe?
 
 ### Phase 3 — 
 - AJ [x] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life
