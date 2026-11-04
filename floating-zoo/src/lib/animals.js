@@ -214,6 +214,34 @@ function beaver() {
   })
 }
 
+function fish() {
+  const g = new VoxelGrid(), c = '#09583d', lt = '#5fab50'
+  const body = (x, y, z) => (hash3(x, y, z, 5) < 0.18 ? '#5e636a' : c)
+  g.box(0, 0, 0, 1, 1, 3, body)
+  g.box(1, 1, -2, 1, 1, -1, lt) //back ass?
+  g.box(1, 0, -3, 1, 2, -3, '#9aac35') //tail
+  g.box(1, 0, -1, 1, 1, -1, lt) //tail-meets-body
+  g.box(0, 0, 4, 0, 1, 5, '#27793e') //head
+  g.set(0, 1, 5, DARK); /*g.set(2, 1, 6, DARK)*/ //eyes
+  g.box(2, 0, 2, 2, 1, 2, '#eaff75');/*{left fin}*/ g.box(-1, 0, 2, -1, 1, 2, '#eaff75')/*{right fin}*/
+  return g
+}
+
+
+function meal() {
+  const g = new VoxelGrid(), c = '#7a7f86', lt = '#9aa0a6'
+  const body = (x, y, z) => (hash3(x, y, z, 5) < 0.18 ? '#5e636a' : c)
+  g.box(0, 0, 0, 3, 2, 7, body)
+  g.box(1, 0, -2, 2, 1, -1, body)
+  g.box(0, 0, -3, 3, 0, -3, '#5e636a')
+  g.box(0, 1, 8, 3, 4, 10, body)
+  g.box(1, 1, 11, 2, 2, 11, lt)
+  g.set(1, 2, 12, DARK); g.set(2, 2, 12, DARK)
+  g.set(0, 3, 10, DARK); g.set(3, 3, 10, DARK)
+  g.box(-1, 0, 5, -1, 0, 6, '#5e636a'); g.box(4, 0, 5, 4, 0, 6, '#5e636a')
+  return g
+}
+
 
 // ---------- Primates ----------
 function sitter({ fur, face, w = 4, tailColor, tailLen = 1 }) {
@@ -283,6 +311,7 @@ function snake() {
   g.set(hx, 0, 18, '#d63a3a')
   return g
 }
+
 function turtle() {
   const g = new VoxelGrid(), shell = '#4f7a3a', skin = '#7d9a5a'
   g.box(0, 0, 1, 0, 0, 1, skin); g.box(4, 0, 1, 4, 0, 1, skin)
@@ -505,7 +534,8 @@ export const SPECIES = {
   otter: { name: 'River otter', emoji: '🦦', build: otter, scale: 0.1, habitat: 'both', speed: 1.2, waterY: -0.15, preferWater: true },
   redWolf: { name: 'Red wolf', emoji: '🐺', build: redWolf, scale: 0.11, habitat: 'land', speed: 0.9 },
   snake: { name: 'Snake', emoji: '🐍', build: snake, scale: 0.09, habitat: 'land', speed: 0.35, slither: true },
-  turtle: { name: 'Turtle', emoji: '🐢', build: turtle, scale: 0.1, habitat: 'both', speed: 0.25, waterY: -0.25 },
+  fish: { name: 'Fish', emoji: '🐟', build: fish, scale: 0.09, habitat: 'water', speed: 0.44, waterY: -0.45, slither: true },
+  turtle: { name: 'Turtle', emoji: '🐢', build: turtle, scale: 0.1, habitat: 'both', speed: 0.45, waterY: -0.15 },
   swan: { name: 'Swan', emoji: '🦢', build: swan, scale: 0.11, habitat: 'water', speed: 0.45, waterY: -0.08 },
   mallardM: { name: 'Mallard - Male', emoji: '🦆', build: mallardM, scale: 0.11, habitat: 'water', speed: 1.1, waterY: -0.08 },
   mallardF: { name: 'Mallard - Female', emoji: '🦆', build: mallardF, scale: 0.11, habitat: 'water', speed: 1.1, waterY: -0.08 },

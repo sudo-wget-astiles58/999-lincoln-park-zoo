@@ -169,7 +169,6 @@ export const BUILDINGS = {
     },
   },
 
-
   glasshouse: {
     defaults: { w: 13, d: 9, wingH: 13, wingD: 9, domeR: 9, domeLen: 6 },
     params: { w: [5, 80], d: [5, 50], wingH: [2, 30], wingD: [1, 49], domeR: [1, 15], domeLen: [10, 40] },

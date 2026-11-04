@@ -31,14 +31,19 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [x] **1.3** Add emojis to other islands with no animals: Cafe Baur, Conservatory, Lionel Train Adventure, Main hall with food & b-rooms
 - AJ [ ] **1.4** Add tortoise to SPECIES inventory. Add to south loop island
 - AJ [x] **1.5** Add ducks to SPECIES inventory. Add to water fowl lagoon
-- AJ [ ] **1.6** Add butterflies, fish, & insects? to SPECIES inventory. Add to south Pond
+- AJ [ ] **1.6** Add butterflies, fish - copy from snakes since they already wiggle, & insects? to SPECIES inventory. Add to south Pond
 - AJ [x] **1.7** Find full list of all animals at the zoo
+- AJ [x] **1.8** Make *some* of the exhibit topography static for rocks, trees, etc. (notably: lions, Macaques, Apes, )
+- AJ [ ] **1.8** Add rocks, logs, lillies, and something else to South Pond
+- AJ [ ] **1.9** Change snakes to slither instead of wiggling
+- AJ [x] **1.91** Add fish - copy from snakes since they already wiggle to SPECIES inventory. Add to south Pond
 
 ### Phase 2 — 
 - AJ [ ] **2.1** Re-size and format the lion island to match real life
-- AJ [ ] **2.2** Add new Seal to SPECIES inventory. Add to Kovler Seal Pool
+- AJ [x] **2.2** Add new Seal to SPECIES inventory. Add to Kovler Seal Pool
 - AJ [ ] **2.3** Add lizards and other reptiles to SPECIES inventory. Add to Reptile house
 - AJ [x] **2.4** Add Grizzly bear to SPECIES inventory. Add to artic tundra
+- AJ [x] **2.4** Add pop-out menu for the aniaml houses (reptile, primeape, birdhouse)
 
 ### Phase 3 — 
 - AJ [x] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life
