@@ -26,6 +26,12 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 
 //todo : reformat this page. Instead of stages, restructure to changes per-island
 
+<!-- 11/4/2026 - last changes: lowered turtle height deeper into water when swimming.
+-Reduced scale of mallards from 0.11 to 0.7 since they were too big.
+-Reduced scale of fish from 0.11 to 0.7
+-Added more action items to readMe -->
+
+
 ### Phase 1 — 
 - AJ [ ] **1.1** Create Grant statue & arch for east entrance of South Pond
 - AJ [ ] **1.2** Change island map topography: merge islands in the north & south
@@ -44,9 +50,10 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [x] **2.2** Add new Seal to SPECIES inventory. Add to Kovler Seal Pool
 - AJ [ ] **2.3** Add lizards and other reptiles to SPECIES inventory. Add to Reptile house
 - AJ [x] **2.4** Add Grizzly bear to SPECIES inventory. Add to artic tundra
-- AJ [x] **2.5** Add pop-out menu for the aniaml houses (reptile, primeape, birdhouse)
-- AJ [x] **2.6** Add feet to ducks which paddle when underwater
-- AJ [x] **2.7** Make beavers waddle when in water maybe?
+- AJ [ ] **2.5** Add pop-out menu for the aniaml houses (reptile, primeape, birdhouse)
+- AJ [ ] **2.6** Add feet to ducks which paddle when underwater
+- AJ [ ] **2.7** Make beavers waddle when in water maybe?
+- AJ [ ] **2.8** Make Benten-jima Island more oblong.
 
 ### Phase 3 — 
 - AJ [x] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life
