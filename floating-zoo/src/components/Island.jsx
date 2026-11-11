@@ -15,7 +15,7 @@ const TRAIN_GEOS = (() => {
 function Train({ radius }) {
   const refs = useRef([])
   useFrame(({ clock }) => {
-    const base = clock.elapsedTime * 0.35
+    const base = clock.elapsedTime * .35
     refs.current.forEach((m, n) => {
       if (!m) return
       const a = base - n * (1.15 / radius)
@@ -29,6 +29,7 @@ function Train({ radius }) {
 }
 
 export function Island({ island, selected, hovered, showLabel, onSelect, onHover }) {
+
   const group = useRef()
   const spin = useRef([])
   const animals = useMemo(
@@ -39,8 +40,10 @@ export function Island({ island, selected, hovered, showLabel, onSelect, onHover
   useFrame(({ clock }) => {
     const t = clock.elapsedTime
     if (group.current) group.current.position.y = islandY(island, t)
-    spin.current.forEach((s) => s && (s.rotation.y = t * 0.6))
+    spin.current.forEach((s) => s && (s.rotation.y = t * .6))
   })
+  //carousel spinn^^
+
 
   const select = (e) => {
     if (e.delta > 4) return

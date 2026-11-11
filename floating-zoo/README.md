@@ -29,7 +29,9 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 <!-- 11/4/2026 - last changes: lowered turtle height deeper into water when swimming.
 -Reduced scale of mallards from 0.11 to 0.7 since they were too big.
 -Reduced scale of fish from 0.11 to 0.7
--Added more action items to readMe -->
+ -Added more action items to readMe -->
+ 
+ <!--ABOVE HAS BEEN PUSHED^^ -->
 
 
 ### Phase 1 — 
@@ -54,6 +56,7 @@ Each building type's settings, defaults and slider ranges live in `BUILDINGS` in
 - AJ [ ] **2.6** Add feet to ducks which paddle when underwater
 - AJ [ ] **2.7** Make beavers waddle when in water maybe?
 - AJ [ ] **2.8** Make Benten-jima Island more oblong.
+- AJ [ ] **2.9** Remove turtles & beaver hopping when on land.
 
 ### Phase 3 — 
 - AJ [x] **3.1** Fix Conservatory shape. Add 2nd dome and make more similar to real-life

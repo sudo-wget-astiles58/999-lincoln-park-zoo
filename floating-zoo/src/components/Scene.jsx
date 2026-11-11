@@ -35,6 +35,7 @@ function Clouds() {
         x: (r() - 0.5) * 460, z: (r() - 0.5) * 360,
         y: below ? -18 - r() * 30 : 22 + r() * 18,
         speed: 0.8 + r() * 1.5,
+        //cloud speed
       }
     })
   }, [])
@@ -75,6 +76,7 @@ function CameraRig({ world, focus }) {
     const dist = isl.R * V * 2.4 + 10
     const az = Math.atan2(camera.position.x - controls.target.x, camera.position.z - controls.target.z)
     const pos = new THREE.Vector3(target.x + Math.sin(az) * dist * 0.8, target.y + dist * 0.62, target.z + Math.cos(az) * dist * 0.8)
+    //TODO THIS TAKES CARE OF THE CAMERA ANITMATION WHEN CLICKING ON AN ISLAND
     anim.current = { pos, target }
   }, [focus, controls, camera, world])
 
@@ -121,7 +123,7 @@ export function Scene({ world, night, labels, selectedId, hoveredId, focus, onSe
           hovered={hoveredId === isl.id}
           showLabel={labels}
           rev={rev}
-          onSelect={onSelect}
+          // onSelect={onSelect}
           onHover={onHover}
         />
       ))}

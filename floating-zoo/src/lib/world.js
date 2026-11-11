@@ -2,8 +2,12 @@ import { EXHIBITS, BRIDGES } from '../data/exhibits'
 import { generateIsland, V } from './islandGen'
 
 // Each island bobs gently on its own rhythm.
-export const islandY = (isl, t) => isl.pos[1] + Math.sin(t * 0.5 + isl.phase) * 0.3
+export const islandY = (isl, t) => isl.pos[1] + Math.sin(t * 0.5 + isl.phase) * 0
 export const surfaceY = (isl, t) => islandY(isl, t) + V
+//changed the bobbing coefficient here fromn 0.3 to 0
+
+//TODO Here's where you'll need to make bridge changes. I'd say fix the islands first. Bc I could fix the bridges now and might need to do it again once I finish the islands bc the logic may change
+
 
 // Point along a bridge (u from 0 at island A to 1 at island B), with a little rope-bridge sag.
 export function bridgePoint(br, u, t, out) {
@@ -19,10 +23,12 @@ export function buildWorld() {
   const bridges = BRIDGES.map(([a, b], id) => {
     const A = EXHIBITS.find((e) => e.id === a), B = EXHIBITS.find((e) => e.id === b)
     const dx = B.pos[0] - A.pos[0], dz = B.pos[2] - A.pos[2]
-    ;(angles[a] ||= []).push({ id, angle: Math.atan2(dz, dx) })
-    ;(angles[b] ||= []).push({ id, angle: Math.atan2(-dz, -dx) })
+      ; (angles[a] ||= []).push({ id, angle: Math.atan2(dz, dx) })
+      ; (angles[b] ||= []).push({ id, angle: Math.atan2(-dz, -dx) })
     return { id, a, b }
   })
+
+  //TODO And HERE vvvvvvv is where I'll need to edit the islands. it seems to map through the exhibits and ISLAND GENS it and then also creates an internal byId after mapping ISLAND GENS 
 
   const islands = EXHIBITS.map((e) => generateIsland(e, angles[e.id] || []))
   const byId = Object.fromEntries(islands.map((i) => [i.id, i]))
@@ -46,6 +52,7 @@ export function buildWorld() {
 }
 
 // Regenerate one island in place (used by the live building editor).
+
 // Bridges, visitors and animals keep pointing at the same island object.
 export function rebuildIsland(world, id, buildings) {
   const isl = world.byId[id]
