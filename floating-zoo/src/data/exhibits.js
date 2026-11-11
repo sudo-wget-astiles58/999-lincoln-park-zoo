@@ -153,7 +153,11 @@ export const EXHIBITS = [
   {
     id: 'southpond', name: 'South Pond & Nature Boardwalk', area: 'South',
     pos: [20, -1, 96], R: 60, terrain: 'grass',
-    pools: [{ x: 2, z: 3, r: 42, islet: { x: 16, z: 15, r: 13 } }],
+    pools: [{
+      x: 2, z: 3, r: 42, islet: {
+        x: 16, z: 15, r: 13, shape: [[-14, -4], [-19, -4], [4, 0], [11, -11], [18, -11], [16, -2], [17, 8], [16, 8], [12, 7], [-19, 9], [-18, 4]],
+      }
+    }],
     buildings: [{ type: 'pavilion', x: 80, z: -96 }], trees: { oak: 5, bush: 3 },
     animals: [['heron', 1], ['fish', 12], ['mallardM', 4], ['turtle', 5], ['beaver', 2], ['mallardF', 5]],
     blurb: 'A restored prairie pond with a boardwalk loop, herons stalking the shallows, and Foreman Island in the middle.',

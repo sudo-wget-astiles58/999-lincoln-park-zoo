@@ -540,7 +540,7 @@ export const SPECIES = {
   mallardM: { name: 'Mallard - Male', emoji: '🦆', build: mallardM, scale: 0.06, habitat: 'water', speed: 1.1, waterY: -0.08 },
   mallardF: { name: 'Mallard - Female', emoji: '🦆', build: mallardF, scale: 0.06, habitat: 'water', speed: 1.1, waterY: -0.08 },
   flamingo: { name: 'Chilean flamingo', emoji: '🦩', build: flamingo, scale: 0.1, habitat: 'both', speed: 0.4, waterY: -0.5, wait: [2, 8] },
-  heron: { name: 'Heron', emoji: '🪶', build: heron, scale: 0.1, habitat: 'both', speed: 0.35, waterY: -0.5, wait: [23, 1] },
+  heron: { name: 'Heron', emoji: '🪶', build: heron, scale: 0.1, habitat: 'both', speed: 0.35, waterY: -0.5, wait: [83, 1] },
   beaver: { name: 'Beaver', emoji: '🦫', build: beaver, scale: 0.1, habitat: 'both', speed: 0.75, waterY: -0.5, wait: [3, 10] },
   colobus: { name: 'Colobus monkey', emoji: '🐒', build: colobus, scale: 0.11, habitat: 'land', speed: 0.9 },
   gorilla: { name: 'Western lowland gorilla', emoji: '🦍', build: gorilla, scale: 0.14, habitat: 'land', speed: 0.45, wait: [3, 10] },

@@ -1,10 +1,25 @@
 import { EXHIBITS, BRIDGES } from '../data/exhibits'
 import { generateIsland, V } from './islandGen'
 
+
+const GROUND_Y = 0  // the one height every island sits at
+
+// Copy an exhibit, but replace its height with GROUND_Y
+const flat = (e) => ({ ...e, pos: [e.pos[0], GROUND_Y, e.pos[2]] })
+
 // Each island bobs gently on its own rhythm.
-export const islandY = (isl, t) => isl.pos[1] + Math.sin(t * 0.5 + isl.phase) * 0
-export const surfaceY = (isl, t) => islandY(isl, t) + V
+//OG islandY export vvv
+// export const islandY = (isl, t) => -3 + Math.sin(t * 0.5 + isl.phase) * 0.35
+
+//edited islandY export to stop bobbing and have level islands on same plane. Any calls passing t will still work. 
+export const islandY = (isl) => 0
+// export const islandY = (isl, t) => isl.pos[1] + Math.sin(t * 0.5 + isl.phase) * 0
 //changed the bobbing coefficient here fromn 0.3 to 0
+
+// export const surfaceY = (isl, t) => islandY(isl, t) ---- removed V but this caused bug where visitors would not walk on island surface.
+//unchanged --> 
+export const surfaceY = (isl, t) => islandY(isl, t) + V
+
 
 //TODO Here's where you'll need to make bridge changes. I'd say fix the islands first. Bc I could fix the bridges now and might need to do it again once I finish the islands bc the logic may change
 
@@ -13,13 +28,14 @@ export const surfaceY = (isl, t) => islandY(isl, t) + V
 export function bridgePoint(br, u, t, out) {
   const ya = surfaceY(br.A, t), yb = surfaceY(br.B, t)
   out.x = br.pa[0] + (br.pb[0] - br.pa[0]) * u
-  out.z = br.pa[1] + (br.pb[1] - br.pa[1]) * u
-  out.y = ya + (yb - ya) * u - br.sag * Math.sin(Math.PI * u)
+  out.z = br.pa[1] + (br.pb[1] - br.pa[1]) * (u)
+  out.y = ya + (yb - ya) * u - br.sag * Math.sin(Math.PI * u) + 0.015
   return out
 }
 
 export function buildWorld() {
-  const angles = {}
+  // const islands = EXHIBITS.map((e) => generateIsland(flat(e), angles[e.id] || []));
+  const angles = {};
   const bridges = BRIDGES.map(([a, b], id) => {
     const A = EXHIBITS.find((e) => e.id === a), B = EXHIBITS.find((e) => e.id === b)
     const dx = B.pos[0] - A.pos[0], dz = B.pos[2] - A.pos[2]
@@ -53,8 +69,12 @@ export function buildWorld() {
 
 // Regenerate one island in place (used by the live building editor).
 
+
+
+
 // Bridges, visitors and animals keep pointing at the same island object.
 export function rebuildIsland(world, id, buildings) {
+
   const isl = world.byId[id]
   const ex = EXHIBITS.find((e) => e.id === id)
   const fresh = generateIsland({ ...ex, buildings }, world.angles[id] || [])
@@ -63,6 +83,9 @@ export function rebuildIsland(world, id, buildings) {
   isl.spinners.forEach((s) => s.geo.dispose())
   Object.assign(isl, fresh)
 }
+
+//rebuild island runs when the edit building sliders are arctive.
+//Inputs come direct from EXHIBITS
 
 // Tiny shared store for "feed" events so the 3D scene can react to UI buttons.
 export const feedStore = {}

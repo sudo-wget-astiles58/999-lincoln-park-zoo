@@ -244,6 +244,23 @@ export const BUILDINGS = {
   },
 }
 
+function onIslet(c, islet) {
+  const dx = c.i + 0.5 - islet.x
+  const dz = c.k + 0.5 - islet.z
+  if (islet.shape) return insidePolygon(dx, dz, islet.shape)
+  return Math.hypot(dx, dz) <= islet.r
+}
+
+function insidePolygon(px, pz, pts) {
+  let inside = false
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [xi, zi] = pts[i], [xj, zj] = pts[j]
+    if ((zi > pz) !== (zj > pz) && px < ((xj - xi) * (pz - zi)) / (zj - zi) + xi) inside = !inside
+  }
+  return inside
+}
+
+
 // ---------- Island ----------
 export function generateIsland(ex, bridgeAngles) {
   const R = ex.R
@@ -273,7 +290,8 @@ export function generateIsland(ex, bridgeAngles) {
       const dx = c.i + 0.5 - p.x, dz = c.k + 0.5 - p.z
       const pr = p.r * (1 + 0.12 * Math.sin(3 * Math.atan2(dz, dx) + p.x))
       if (Math.hypot(dx, dz) > pr || !interior(c.i, c.k)) continue
-      if (p.islet && Math.hypot(c.i + 0.5 - p.islet.x, c.k + 0.5 - p.islet.z) <= p.islet.r) continue
+      if (p.islet && onIslet(c, p.islet)) continue
+      // if (p.islet && Math.hypot(c.i + 0.5 - p.islet.x, c.k + 0.5 - p.islet.z) <= p.islet.r) continue
       c.type = 'water'
       c.hot = p.hot
     }
